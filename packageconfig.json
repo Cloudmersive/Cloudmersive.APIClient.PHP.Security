@@ -1,0 +1,9 @@
+﻿{
+    "artifactVersion": "1.2.0",
+    "gitUserId": "Cloudmersive",
+    "gitRepoId": "Cloudmersive.APIClient.PHP.Security",
+    "composerVendorName": "cloudmersive",
+    "composerProjectName": "cloudmersive_security_api_client",
+    "packagePath": "cloudmersive_security_api_client"
+
+}
