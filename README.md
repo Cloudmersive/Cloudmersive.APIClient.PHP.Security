@@ -1,10 +1,10 @@
-# cloudmersive_virusscan_api_client
-The Cloudmersive Virus Scan API lets you scan files and content for viruses and identify security issues with content.
+# cloudmersive_security_api_client
+The security APIs help you detect and block security threats.
 
-[Cloudmersive Virus Scan API](https://www.cloudmersive.com/virus-api) provides advanced virus scanning capabilities.
+[Cloudmersive Security API](https://www.cloudmersive.com/security-threat-detection-api) helps you detect and block security threats.
 
 - API version: v1
-- Package version: 1.5.0
+- Package version: 1.2.0
 
 
 ## Requirements
@@ -21,11 +21,11 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/cloudmersive/cloudmersive_virusscan_api_client.git"
+      "url": "https://github.com/cloudmersive/cloudmersive_security_api_client.git"
     }
   ],
   "require": {
-    "cloudmersive/cloudmersive_virusscan_api_client": "*@dev"
+    "cloudmersive/cloudmersive_security_api_client": "*@dev"
   }
 }
 ```
@@ -37,7 +37,7 @@ Then run `composer install`
 Download the files and include `autoload.php`:
 
 ```php
-    require_once('/path/to/cloudmersive_virusscan_api_client/vendor/autoload.php');
+    require_once('/path/to/cloudmersive_security_api_client/vendor/autoload.php');
 ```
 
 ## Tests
@@ -62,19 +62,19 @@ $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Ap
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Apikey', 'Bearer');
 
-$apiInstance = new Swagger\Client\Api\ScanApi(
+$apiInstance = new Swagger\Client\Api\ContentThreatDetectionApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$input_file = "/path/to/file.txt"; // \SplFileObject | Input file to perform the operation on.
+$value = "value_example"; // string | User-facing text input.
 
 try {
-    $result = $apiInstance->scanFile($input_file);
+    $result = $apiInstance->contentThreatDetectionAutomaticThreatDetectionString($value);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ScanApi->scanFile: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ContentThreatDetectionApi->contentThreatDetectionAutomaticThreatDetectionString: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -86,27 +86,29 @@ All URIs are relative to *https://api.cloudmersive.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ScanApi* | [**scanFile**](docs/Api/ScanApi.md#scanfile) | **POST** /virus/scan/file | Scan a file for viruses
-*ScanApi* | [**scanFileAdvanced**](docs/Api/ScanApi.md#scanfileadvanced) | **POST** /virus/scan/file/advanced | Advanced Scan a file for viruses
-*ScanApi* | [**scanWebsite**](docs/Api/ScanApi.md#scanwebsite) | **POST** /virus/scan/website | Scan a website for malicious content and threats
-*ScanCloudStorageApi* | [**scanCloudStorageScanAwsS3File**](docs/Api/ScanCloudStorageApi.md#scancloudstoragescanawss3file) | **POST** /virus/scan/cloud-storage/aws-s3/single | Scan an AWS S3 file for viruses
-*ScanCloudStorageApi* | [**scanCloudStorageScanAwsS3FileAdvanced**](docs/Api/ScanCloudStorageApi.md#scancloudstoragescanawss3fileadvanced) | **POST** /virus/scan/cloud-storage/aws-s3/single/advanced | Advanced Scan an AWS S3 file for viruses
-*ScanCloudStorageApi* | [**scanCloudStorageScanAzureBlob**](docs/Api/ScanCloudStorageApi.md#scancloudstoragescanazureblob) | **POST** /virus/scan/cloud-storage/azure-blob/single | Scan an Azure Blob for viruses
-*ScanCloudStorageApi* | [**scanCloudStorageScanAzureBlobAdvanced**](docs/Api/ScanCloudStorageApi.md#scancloudstoragescanazureblobadvanced) | **POST** /virus/scan/cloud-storage/azure-blob/single/advanced | Advanced Scan an Azure Blob for viruses
-*ScanCloudStorageApi* | [**scanCloudStorageScanGcpStorageFile**](docs/Api/ScanCloudStorageApi.md#scancloudstoragescangcpstoragefile) | **POST** /virus/scan/cloud-storage/gcp-storage/single | Scan an Google Cloud Platform (GCP) Storage file for viruses
-*ScanCloudStorageApi* | [**scanCloudStorageScanGcpStorageFileAdvanced**](docs/Api/ScanCloudStorageApi.md#scancloudstoragescangcpstoragefileadvanced) | **POST** /virus/scan/cloud-storage/gcp-storage/single/advanced | Advanced Scan an Google Cloud Platform (GCP) Storage file for viruses
+*ContentThreatDetectionApi* | [**contentThreatDetectionAutomaticThreatDetectionString**](docs/Api/ContentThreatDetectionApi.md#contentthreatdetectionautomaticthreatdetectionstring) | **POST** /security/threat-detection/content/automatic/detect/string | Automatically detect threats in an input string
+*ContentThreatDetectionApi* | [**contentThreatDetectionCheckSqlInjectionString**](docs/Api/ContentThreatDetectionApi.md#contentthreatdetectionchecksqlinjectionstring) | **POST** /security/threat-detection/content/sql-injection/detect/string | Check text input for SQL Injection (SQLI) attacks
+*ContentThreatDetectionApi* | [**contentThreatDetectionCheckXxe**](docs/Api/ContentThreatDetectionApi.md#contentthreatdetectioncheckxxe) | **POST** /security/threat-detection/content/xxe/detect/xml/string | Protect text input from XML External Entity (XXE) attacks
+*ContentThreatDetectionApi* | [**contentThreatDetectionDetectInsecureDeserializationJsonString**](docs/Api/ContentThreatDetectionApi.md#contentthreatdetectiondetectinsecuredeserializationjsonstring) | **POST** /security/threat-detection/content/insecure-deserialization/json/detect/string | Detect Insecure Deserialization JSON (JID) attacks in a string
+*ContentThreatDetectionApi* | [**contentThreatDetectionProtectXss**](docs/Api/ContentThreatDetectionApi.md#contentthreatdetectionprotectxss) | **POST** /security/threat-detection/content/xss/detect/string | Protect text input from Cross-Site-Scripting (XSS) attacks through normalization
+*NetworkThreatDetectionApi* | [**networkThreatDetectionDetectSsrfUrl**](docs/Api/NetworkThreatDetectionApi.md#networkthreatdetectiondetectssrfurl) | **POST** /security/threat-detection/network/url/ssrf/detect | Check a URL for Server-side Request Forgery (SSRF) threats
+*NetworkThreatDetectionApi* | [**networkThreatDetectionIsBot**](docs/Api/NetworkThreatDetectionApi.md#networkthreatdetectionisbot) | **POST** /security/threat-detection/network/ip/is-bot | Check if IP address is a Bot client threat
+*NetworkThreatDetectionApi* | [**networkThreatDetectionIsThreat**](docs/Api/NetworkThreatDetectionApi.md#networkthreatdetectionisthreat) | **POST** /security/threat-detection/network/ip/is-threat | Check if IP address is a known threat
+*NetworkThreatDetectionApi* | [**networkThreatDetectionIsTorNode**](docs/Api/NetworkThreatDetectionApi.md#networkthreatdetectionistornode) | **POST** /security/threat-detection/network/ip/is-tor-node | Check if IP address is a Tor node server
 
 
 ## Documentation For Models
 
- - [CloudStorageAdvancedVirusScanResult](docs/Model/CloudStorageAdvancedVirusScanResult.md)
- - [CloudStorageVirusFound](docs/Model/CloudStorageVirusFound.md)
- - [CloudStorageVirusScanResult](docs/Model/CloudStorageVirusScanResult.md)
- - [VirusFound](docs/Model/VirusFound.md)
- - [VirusScanAdvancedResult](docs/Model/VirusScanAdvancedResult.md)
- - [VirusScanResult](docs/Model/VirusScanResult.md)
- - [WebsiteScanRequest](docs/Model/WebsiteScanRequest.md)
- - [WebsiteScanResult](docs/Model/WebsiteScanResult.md)
+ - [IPThreatDetectionResponse](docs/Model/IPThreatDetectionResponse.md)
+ - [StringAutomaticThreatDetection](docs/Model/StringAutomaticThreatDetection.md)
+ - [StringInsecureDeserializationJsonDetection](docs/Model/StringInsecureDeserializationJsonDetection.md)
+ - [StringSqlInjectionDetectionResult](docs/Model/StringSqlInjectionDetectionResult.md)
+ - [StringXssProtectionResult](docs/Model/StringXssProtectionResult.md)
+ - [StringXxeDetectionResult](docs/Model/StringXxeDetectionResult.md)
+ - [ThreatDetectionBotCheckResponse](docs/Model/ThreatDetectionBotCheckResponse.md)
+ - [ThreatDetectionTorNodeResponse](docs/Model/ThreatDetectionTorNodeResponse.md)
+ - [UrlSsrfThreatDetectionRequestFull](docs/Model/UrlSsrfThreatDetectionRequestFull.md)
+ - [UrlSsrfThreatDetectionResponseFull](docs/Model/UrlSsrfThreatDetectionResponseFull.md)
 
 
 ## Documentation For Authorization
